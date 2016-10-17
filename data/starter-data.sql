@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.14.1
--- http://www.phpmyadmin.net
+-- version 4.6.3
+-- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 13, 2016 at 10:06 PM
--- Server version: 5.6.26
--- PHP Version: 5.6.12
+-- Generation Time: Oct 16, 2016 at 11:01 PM
+-- Server version: 5.7.13
+-- PHP Version: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,21 +26,21 @@ SET time_zone = "+00:00";
 -- Table structure for table `categories`
 --
 
-CREATE TABLE IF NOT EXISTS `categories` (
-  `code` varchar(1) NOT NULL,
+CREATE TABLE `categories` (
+  `id` varchar(1) NOT NULL,
   `name` varchar(64) NOT NULL,
   `description` text NOT NULL,
-  `images` varchar(100) NOT NULL
+  `image` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`code`, `name`, `description`, `images`) VALUES
-('d', 'Drinks', 'Purees made from the finest of Venusian insects, government-inspected.', ''),
-('m', 'Mains', 'Made from only the finest ingredients found deep in the Martian jungle, and harvested or slaughtered by academy-trained druids, we bring you 45 day aged premium "meat".', ''),
-('s', 'Sides', 'Perfect accompaniments to our mains, these side dish pairings have been exclsisvely formulated by Ben & Jerry.', '');
+INSERT INTO `categories` (`id`, `name`, `description`, `image`) VALUES
+('d', 'Drinks', 'Purees made from the finest of Venusian insects, government-inspected.', 'catd.png'),
+('m', 'Mains', 'Made from only the finest ingredients found deep in the Martian jungle, and harvested or slaughtered by academy-trained druids, we bring you 45 day aged premium "meat".', 'catm.png'),
+('s', 'Sides', 'Perfect accompaniments to our mains, these side dish pairings have been exclsisvely formulated by Ben & Jerry.', 'cats.png');
 
 -- --------------------------------------------------------
 
@@ -48,8 +48,8 @@ INSERT INTO `categories` (`code`, `name`, `description`, `images`) VALUES
 -- Table structure for table `menu`
 --
 
-CREATE TABLE IF NOT EXISTS `menu` (
-  `code` int(11) NOT NULL,
+CREATE TABLE `menu` (
+  `id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   `description` varchar(256) NOT NULL,
   `price` decimal(10,2) NOT NULL,
@@ -61,15 +61,15 @@ CREATE TABLE IF NOT EXISTS `menu` (
 -- Dumping data for table `menu`
 --
 
-INSERT INTO `menu` (`code`, `name`, `description`, `price`, `picture`, `category`) VALUES
+INSERT INTO `menu` (`id`, `name`, `description`, `price`, `picture`, `category`) VALUES
 (1, 'Cheese', 'Leave this raw milk, beefy and sweet cheese out for an hour before serving and pair with pear jam.', '2.95', '1.png', 's'),
 (2, 'Turkey', 'Roasted, succulent, stuffed, lovingly sliced turkey breast', '5.95', '2.png', 'm'),
 (6, 'Donut', 'Disgustingly sweet, topped with artery clogging chocolate and then sprinkled with Pixie dust', '1.25', '6.png', 's'),
 (10, 'Bubbly', '1964 Moet Charmon, made from grapes crushed by elves with clean feet, perfectly chilled.', '14.50', '10.png', 'd'),
 (11, 'Ice Cream', 'Combination of decadent chocolate topped with luscious strawberry, churned by gifted virgins using only cream from the Tajima strain of wagyu cattle', '3.75', '11.png', 's'),
 (8, 'Hot Dog', 'Pork trimmings mixed with powdered preservatives, flavourings, red colouring and drenched in water before being squeezed into plastic tubes. Topped with onions, bacon, chili or cheese - no extra charge.', '6.90', '8.png', 'm'),
-(25, 'Burger', 'Half-pound of beef, topped with bacon and served with your choice of a slice of American cheese, red onion, sliced tomato, and Heart Attack Grill''s own unique special sauce.', '9.99', 'burger.png', 'm'),
-(21, 'Coffee', 'A delicious cup of the nectar of life, saviour of students, morning kick-starter; made with freshly grounds that you don''t want to know where they came from!', '2.95', 'coffee.png', 'd');
+(25, 'Burger', 'Half-pound of beef, topped with bacon and served with your choice of a slice of American cheese, red onion, sliced tomato, and Heart Attack Grill\'s own unique special sauce.', '9.99', 'burger.png', 'm'),
+(21, 'Coffee', 'A delicious cup of the nectar of life, saviour of students, morning kick-starter; made with freshly grounds that you don\'t want to know where they came from!', '2.95', 'coffee.png', 'd');
 
 -- --------------------------------------------------------
 
@@ -77,7 +77,7 @@ INSERT INTO `menu` (`code`, `name`, `description`, `price`, `picture`, `category
 -- Table structure for table `orderitems`
 --
 
-CREATE TABLE IF NOT EXISTS `orderitems` (
+CREATE TABLE `orderitems` (
   `order` int(11) NOT NULL,
   `item` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `orderitems` (
 -- Table structure for table `orders`
 --
 
-CREATE TABLE IF NOT EXISTS `orders` (
+CREATE TABLE `orders` (
   `num` int(11) NOT NULL,
   `date` datetime NOT NULL,
   `status` varchar(1) NOT NULL,
@@ -106,13 +106,13 @@ CREATE TABLE IF NOT EXISTS `orders` (
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
-  ADD PRIMARY KEY (`code`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `menu`
 --
 ALTER TABLE `menu`
-  ADD PRIMARY KEY (`code`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `orderitems`
