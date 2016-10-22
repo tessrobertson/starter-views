@@ -17,7 +17,7 @@ class Welcome extends Application
         public function index() {
             $result = '';
             $oddrow = true;
-            foreach ($this->categories->all() as $category) {
+            foreach ($this->Categories->all() as $category) {
                 $category->direction = ($oddrow ? 'left' : 'right');
                 $result .= $this->parser->parse('category-home', $category, true);
                 $oddrow = ! $oddrow;
